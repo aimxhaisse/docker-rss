@@ -1,0 +1,9 @@
+rss:
+  build: .
+  volumes:
+    - data:/db
+  expose:
+    - 5000
+  environment:
+    - VIRTUAL_PORT=5000
+    - VIRTUAL_HOST=feeds.mxs.sbrk.org
