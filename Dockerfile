@@ -29,5 +29,6 @@ RUN bundle install
 
 ADD database.yml config/database.yml
 RUN mkdir /db
+ENV REFRESH_RATE 1800
 
-CMD rake db:migrate RACK_ENV=production && foreman start
+CMD ((sleep 10 ; while [ true ]; do bundle exec rake fetch_feeds; sleep $REFRESH_RATE; done) & rake db:migrate RACK_ENV=production && foreman start)
